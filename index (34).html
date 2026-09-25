@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu FASIH Bulk · SE2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F5F7; --card:#FFFFFF; --ink:#1A2430; --ink-soft:#68727C; --line:#E7E9ED;
+    --navy:#1B3A4B; --navy-soft:#E7EEF1;
+    --rust:#B0413E; --rust-soft:#F8E9E8;
+    --moss:#3F6644; --moss-soft:#E9F1EA;
+    --gray-soft:#EEEFF1;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Source Sans 3',system-ui,sans-serif;
+  }
+  header{
+    background:var(--card); border-bottom:1px solid var(--line);
+    padding:20px 32px; display:flex; align-items:center; gap:14px;
+  }
+  .logo{
+    width:44px; height:44px; border-radius:10px; background:var(--navy);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:1.1rem; flex:none;
+  }
+  .brand-title{font-weight:700; font-size:1.15rem; letter-spacing:0.01em}
+  .brand-sub{font-size:0.78rem; color:var(--navy); font-weight:600; letter-spacing:0.04em}
+  .wrap{max-width:1080px; margin:0 auto; padding:36px 32px 80px}
+  .intro{max-width:56ch; color:var(--ink-soft); margin:0 0 28px; font-size:0.98rem}
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:26px; display:flex; flex-direction:column; min-height:220px;
+    position:relative;
+  }
+  .icon{
+    width:46px; height:46px; border-radius:10px; display:flex; align-items:center;
+    justify-content:center; font-size:1.3rem; margin-bottom:18px;
+  }
+  .icon.navy{background:var(--navy-soft); color:var(--navy)}
+  .icon.rust{background:var(--rust-soft); color:var(--rust)}
+  .icon.moss{background:var(--moss-soft); color:var(--moss)}
+  .icon.gray{background:var(--gray-soft); color:var(--ink-soft)}
+  .card h2{font-size:1.05rem; margin:0 0 8px; line-height:1.3}
+  .card p{font-size:0.92rem; color:var(--ink-soft); margin:0; flex:1; line-height:1.5}
+  .link-row{
+    margin-top:20px; padding-top:16px; border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:0.92rem; font-weight:600; text-decoration:none;
+  }
+  .link-row.navy{color:var(--navy)}
+  .link-row.rust{color:var(--rust)}
+  .link-row.disabled{color:var(--ink-soft); cursor:default}
+  .dl-row{
+    margin-top:12px; display:flex; gap:14px; flex-wrap:wrap;
+    font-size:0.82rem; font-weight:600;
+  }
+  .dl-row a{color:var(--navy); text-decoration:none}
+  .dl-row a:hover{text-decoration:underline}
+  .badge{
+    position:absolute; top:16px; right:16px; font-size:0.68rem; font-weight:700;
+    letter-spacing:0.04em; padding:3px 9px; border-radius:20px;
+  }
+  .badge.soon{background:var(--gray-soft); color:var(--ink-soft)}
+  footer{max-width:1080px; margin:0 auto; padding:0 32px 60px; color:var(--ink-soft); font-size:0.85rem}
+  footer code{background:var(--gray-soft); padding:1px 6px; border-radius:4px}
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">SE</div>
+    <div>
+      <div class="brand-title">Menu FASIH Bulk</div>
+      <div class="brand-sub">SENSUS EKONOMI 2026 · PENGAWAS LAPANGAN</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <p class="intro">Panduan pemasangan, serta pengambilan daftar ID untuk memproses assignment FASIH SM secara massal (Reject / Approve).</p>
+
+    <div class="grid">
+      <a class="card" href="petunjuk.html">
+        <div class="icon navy">📘</div>
+        <h2>1. Panduan Pemasangan</h2>
+        <p>Cara memasang Python dan menjalankan skrip Reject/Approve massal, langkah demi langkah untuk pemula.</p>
+        <span class="dl-row">
+          <a href="files/fasih_bulk.py" download onclick="event.stopPropagation()">&#8681; fasih_bulk.py</a>
+          <a href="files/fasih_approve_pengawas.py" download onclick="event.stopPropagation()">&#8681; approve_pengawas.py</a>
+        </span>
+        <span class="link-row navy">Buka Tautan <span>&rarr;</span></span>
+      </a>
+
+      <a class="card" href="https://script.google.com/macros/s/AKfycbzA_CmEd9ZwSEca_xkwW76bDD_LaE4vCnJgutGtJuOL7S95StrB-XR5eLeY-Fo2mgtD/exec" target="_blank" rel="noopener">
+        <div class="icon rust">✕</div>
+        <h2>2. Ambil ID — Reject</h2>
+        <p>Membuka alat penyisiran yang menghasilkan daftar link assignment untuk diproses Reject secara massal.</p>
+        <span class="link-row rust">Buka Tautan <span>&rarr;</span></span>
+      </a>
+
+      <div class="card">
+        <span class="badge soon">SEGERA</span>
+        <div class="icon gray">✓</div>
+        <h2>3. Ambil ID — Approve (Submitted)</h2>
+        <p>Alat penyisiran untuk assignment berstatus submitted yang siap di-approve. Tautan menyusul.</p>
+        <span class="link-row disabled">Buka Tautan <span>&rarr;</span></span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Setelah mendapatkan daftar ID, tempel ke <code>data.xlsx</code> lalu jalankan <code>fasih_bulk.py</code> (Reject) atau <code>fasih_approve_pengawas.py</code> (Approve).
+  </footer>
+</body>
+</html>
