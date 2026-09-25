@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Pemasangan · Penyisiran Lapangan SE2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3F4EF; --paper-2:#ECEDE6; --ink:#1F2A24; --ink-soft:#5B6660;
+    --navy:#1B3A4B; --rust:#B0413E; --moss:#3F6644; --line:#D9D6C9;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Source Sans 3',system-ui,sans-serif; line-height:1.6;
+  }
+  .wrap{max-width:680px; margin:0 auto; padding:56px 24px 96px}
+  .back{font-size:0.9rem; color:var(--navy); text-decoration:none}
+  .back:hover{text-decoration:underline}
+  h1,h2,h3{font-family:'Source Serif 4',Georgia,serif; font-weight:600; margin:0}
+  h1{font-size:1.9rem; margin:20px 0 6px; letter-spacing:-0.01em}
+  .kicker{color:var(--ink-soft); font-size:0.95rem; margin:0 0 40px}
+  section{margin-top:48px; padding-top:28px; border-top:1px solid var(--line)}
+  h2{font-size:1.25rem; display:flex; align-items:baseline; gap:14px}
+  h2 .n{color:var(--ink-soft); font-weight:500; font-size:1rem}
+  h3{font-size:1.02rem; margin-top:24px}
+  p{margin:12px 0}
+  a{color:var(--navy)}
+  ul,ol{padding-left:1.3em; margin:12px 0}
+  li{margin:6px 0}
+  code{
+    font-family:'IBM Plex Mono',monospace; font-size:0.88em;
+    background:var(--paper-2); padding:1px 6px; border-radius:3px;
+  }
+  pre{
+    background:#1F2A24; color:#EDECE4; padding:14px 16px; border-radius:4px;
+    overflow-x:auto; font-family:'IBM Plex Mono',monospace; font-size:0.85rem; line-height:1.55;
+  }
+  pre code{background:none; padding:0; color:inherit}
+  table{border-collapse:collapse; width:100%; margin:16px 0; font-size:0.92rem}
+  th,td{border-bottom:1px solid var(--line); text-align:left; padding:8px 10px; vertical-align:top}
+  th{color:var(--ink-soft); font-weight:600}
+  .note{
+    border-left:3px solid var(--rust); background:rgba(176,65,62,0.06);
+    padding:10px 14px; margin:16px 0; font-size:0.94rem;
+  }
+  .note.ok{border-left-color:var(--moss); background:rgba(63,102,68,0.06)}
+  footer{margin-top:56px; color:var(--ink-soft); font-size:0.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Menu</a>
+  <p class="kicker">Untuk orang yang belum pernah memakai Python. Ikuti urutan langkahnya.</p>
+  <h1>Panduan Pemasangan FASIH Bulk</h1>
+  <p>Dua file yang bisa diklik dua kali untuk me-<em>reject</em> atau me-<em>approve</em> banyak assignment sekaligus di FASIH SM, tanpa klik satu per satu.</p>
+
+  <table>
+    <tr><th>File</th><th>Fungsi</th></tr>
+    <tr><td><code>fasih_bulk.py</code></td><td>Reject massal (juga bisa Cek status)</td></tr>
+    <tr><td><code>fasih_approve_pengawas.py</code></td><td>Approve massal khusus Pengawas (juga bisa Cek status)</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Sebelum mulai:</strong> pastikan Windows 10/11 tersambung internet, punya akun FASIH dengan role Pengawas (PML) yang bisa login di Chrome/Edge, dan sudah punya ketiga file: <code>fasih_bulk.py</code>, <code>fasih_approve_pengawas.py</code>, dan contoh <code>data.xlsx</code>.
+  </div>
+
+  <section>
+    <h2><span class="n">1</span>Pasang Python (sekali saja per PC)</h2>
+    <p>Python adalah program "mesin" yang menjalankan file <code>.py</code>. Pasang sekali, lalu tidak perlu dibuka lagi.</p>
+    <ol>
+      <li>Buka <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a>.</li>
+      <li>Klik tombol kuning <strong>Download Python 3.x.x</strong>.</li>
+      <li>Buka file yang terunduh (folder Downloads).</li>
+      <li><strong>Centang kotak paling bawah: "Add python.exe to PATH"</strong> &mdash; langkah yang paling sering terlewat.</li>
+      <li>Klik <strong>Install Now</strong>, lalu <strong>Yes</strong> jika Windows bertanya izin.</li>
+      <li>Tunggu sampai <strong>Setup was successful</strong>, klik <strong>Close</strong>.</li>
+    </ol>
+    <h3>Cek apakah berhasil</h3>
+    <ol>
+      <li>Tekan <strong>Windows + R</strong>, ketik <code>cmd</code>, Enter.</li>
+      <li>Ketik: <code>py --version</code></li>
+      <li>Muncul <code>Python 3.12.x</code> berarti berhasil.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>Buat folder kerja <code>REJECT</code> di drive D</h2>
+    <ol>
+      <li>Buka File Explorer &rarr; <strong>Data (D:)</strong>.</li>
+      <li>Klik kanan &rarr; New &rarr; Folder &rarr; beri nama <strong>REJECT</strong>.</li>
+      <li>Salin <code>fasih_bulk.py</code> dan <code>fasih_approve_pengawas.py</code> ke <code>D:\REJECT</code>.</li>
+    </ol>
+    <p>Tidak ada drive D? Boleh pakai drive lain, yang penting semua file ada dalam satu folder yang sama. Skrip otomatis bekerja di folder tempatnya berada.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>Pasang dua pustaka tambahan (sekali saja per PC)</h2>
+    <ol>
+      <li>Buka folder <code>D:\REJECT</code>.</li>
+      <li>Klik kotak alamat di atas, hapus isinya, ketik <code>cmd</code>, Enter &mdash; jendela hitam terbuka langsung di folder itu.</li>
+      <li>Ketik lalu Enter: <pre><code>py -m pip install requests openpyxl</code></pre></li>
+      <li>Tunggu sampai muncul <code>Successfully installed ...</code>.</li>
+    </ol>
+    <p>Butuh internet. Tulisan kuning soal "new release of pip" boleh diabaikan.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>Siapkan daftar assignment di <code>data.xlsx</code></h2>
+    <ol>
+      <li>Buka Excel, buat file baru.</li>
+      <li>Sel <strong>A1</strong> diisi judul: <code>Link Fasih</code></li>
+      <li>Mulai <strong>A2</strong> ke bawah, tempel link assignment, satu link per baris.</li>
+      <li>Simpan sebagai <strong>data.xlsx</strong> di folder <code>D:\REJECT</code>, tutup Excel.</li>
+    </ol>
+    <pre><code>Link Fasih
+https://fasih-sm.bps.go.id/app/assignment-detail/37c3ba8c-2cfe-4aac-b09a-e392fd313080
+https://fasih-sm.bps.go.id/app/assignment-detail/25170152-c244-479a-9f26-a4ce93b4fe3f</code></pre>
+    <p>Kolom lain di Excel tidak masalah &mdash; hanya kolom bernama <code>Link Fasih</code> yang dibaca. Isi hanya assignment yang memang mau diproses; reject massal tidak mudah dibatalkan. Link ganda otomatis dibuang.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span>Ambil cookie dari browser</h2>
+    <p>Cookie adalah tanda pengenal login akunmu. Skrip meminjamnya supaya bekerja sebagai kamu.</p>
+    <ol>
+      <li>Login ke <a href="https://fasih-sm.bps.go.id" target="_blank" rel="noopener">fasih-sm.bps.go.id</a> dengan akun Pengawas.</li>
+      <li>Buka survei SENSUS EKONOMI 2026 &rarr; menu Data.</li>
+      <li>Tekan <strong>F12</strong> &rarr; tab <strong>Network</strong> &rarr; filter <strong>Fetch/XHR</strong>.</li>
+      <li>Tekan <strong>F5</strong> untuk memuat ulang.</li>
+      <li>Klik salah satu baris fasih-sm berstatus <strong>200</strong>.</li>
+      <li>Tab <strong>Headers</strong> &rarr; gulir ke <strong>Request Headers</strong> &rarr; cari <strong>Cookie</strong>.</li>
+      <li>Klik tiga kali nilainya, <strong>Ctrl+C</strong>.</li>
+      <li>Kembali ke jendela hitam skrip (tulisan <code>Cookie baru&gt;</code>), tempel, Enter.</li>
+    </ol>
+    <div class="note">
+      <strong>Cookie = kunci login akunmu.</strong> Jangan kirim ke siapa pun, jangan di-screenshot lalu dibagikan. Skrip menyimpannya di <code>cookie.txt</code> di folder REJECT. Hapus file itu kalau PC dipakai bersama.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span>Jalankan skrip</h2>
+    <p>Klik dua kali <code>fasih_bulk.py</code> untuk <strong>Reject</strong>, atau <code>fasih_approve_pengawas.py</code> untuk <strong>Approve</strong>. Jendela hitam bertanya beberapa hal &mdash; tekan Enter untuk pilihan bawaan:</p>
+    <table>
+      <tr><th>Pertanyaan</th><th>Jawab</th></tr>
+      <tr><td>Pilih aksi</td><td><code>1</code> untuk Cek status, atau Enter untuk aksi utama</td></tr>
+      <tr><td>File daftar ID</td><td>Enter (otomatis <code>data.xlsx</code>)</td></tr>
+      <tr><td>Survey Period ID</td><td>Enter (sudah terisi periode PENDATAAN)</td></tr>
+      <tr><td>Mode dry-run</td><td><code>y</code> untuk hanya melihat rencana, atau Enter untuk langsung jalan</td></tr>
+      <tr><td>Cookie baru</td><td>Tempel cookie (lihat Langkah 5)</td></tr>
+      <tr><td>Ketik YA</td><td><code>YA</code> lalu Enter untuk benar-benar mengirim</td></tr>
+    </table>
+    <h3>Urutan aman</h3>
+    <ol>
+      <li><strong>Cek status dulu</strong> (pilih 1) &mdash; hanya membaca, tidak mengubah apa pun.</li>
+      <li><strong>Coba 1-2 assignment</strong> dulu di <code>data.xlsx</code> sementara, periksa hasilnya di FASIH.</li>
+      <li>Kalau benar, ganti dengan daftar lengkap dan jalankan untuk semuanya.</li>
+    </ol>
+    <p>Yang dilewati otomatis: <strong>Reject</strong> melewati status REJECTED/SUBMITTED; <strong>Approve</strong> melewati status APPROVED/REJECTED; keduanya melewati assignment yang tidak ditemukan.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">7</span>Baca hasilnya</h2>
+    <p>Ringkasan muncul di layar, dan rincian tiap assignment tersimpan di <code>log_reject_....csv</code> atau <code>log_approve_....csv</code> di folder REJECT.</p>
+    <table>
+      <tr><th>Status</th><th>Artinya</th></tr>
+      <tr><td>Berhasil</td><td>Aksi sudah dijalankan</td></tr>
+      <tr><td>Dilewati</td><td>Sengaja tidak diproses; alasan ada di kolom keterangan</td></tr>
+      <tr><td>Gagal</td><td>Ditolak server atau ada gangguan; baca kolom keterangan</td></tr>
+    </table>
+    <p>Untuk mengulang yang Gagal (ganti nama file log dan periode sesuai keperluan):</p>
+    <pre><code>py fasih_bulk.py reject --failed-from NAMA_FILE_LOG.csv --period fd68e454-ba45-4b85-8205-f3bf777ded24</code></pre>
+  </section>
+
+  <section>
+    <h2>Kalau ada masalah</h2>
+    <table>
+      <tr><th>Yang terjadi</th><th>Solusi</th></tr>
+      <tr><td>Jendela hitam langsung menutup</td><td>Ulangi Langkah 1, pastikan "Add python.exe to PATH" dicentang</td></tr>
+      <tr><td><code>'py' is not recognized</code></td><td>Python belum terpasang / PATH belum dicentang</td></tr>
+      <tr><td><code>No module named 'requests'</code></td><td>Ulangi Langkah 3</td></tr>
+      <tr><td>File <code>data.xlsx</code> tidak ditemukan</td><td>Harus di folder yang sama, nama persis <code>data.xlsx</code></td></tr>
+      <tr><td>Kolom ID tidak ditemukan</td><td>Judul kolom harus <code>Link Fasih</code> di sel A1</td></tr>
+      <tr><td>Cookie belum valid / HTTP 401/403</td><td>Ulangi Langkah 5, salin dari baris berstatus 200</td></tr>
+      <tr><td>Role akun ini bukan ...</td><td>Login dengan akun Pengawas/PML yang benar</td></tr>
+    </table>
+  </section>
+
+  <div class="note ok">
+    <strong>Aturan aman:</strong> selalu Cek status dan uji 1-2 assignment dulu &middot; jangan bagikan <code>cookie.txt</code> atau teks cookie &middot; gunakan hanya sesuai wewenang dan arahan koordinator kegiatan.
+  </div>
+
+  <footer><a class="back" href="index.html">&larr; Kembali ke menu</a></footer>
+</div>
+</body>
+</html>
