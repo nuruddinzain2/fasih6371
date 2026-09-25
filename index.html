@@ -60,15 +60,18 @@
   .link-row.navy{color:var(--navy)}
   .link-row.rust{color:var(--rust)}
   .link-row.disabled{color:var(--ink-soft); cursor:default}
+  /* "stretched link": bikin seluruh kartu bisa diklik lewat baris Buka Tautan,
+     tanpa membungkus kartu dengan <a> (yang akan bentrok dengan link unduh di dalamnya) */
+  .stretched-link::after{content:""; position:absolute; inset:0; z-index:1}
   .dl-row{
-    margin-top:12px; display:flex; gap:14px; flex-wrap:wrap;
-    font-size:0.82rem; font-weight:600;
+    position:relative; z-index:2; margin-top:12px; display:flex; gap:14px;
+    flex-wrap:wrap; font-size:0.82rem; font-weight:600;
   }
   .dl-row a{color:var(--navy); text-decoration:none}
   .dl-row a:hover{text-decoration:underline}
   .badge{
     position:absolute; top:16px; right:16px; font-size:0.68rem; font-weight:700;
-    letter-spacing:0.04em; padding:3px 9px; border-radius:20px;
+    letter-spacing:0.04em; padding:3px 9px; border-radius:20px; z-index:2;
   }
   .badge.soon{background:var(--gray-soft); color:var(--ink-soft)}
   footer{max-width:1080px; margin:0 auto; padding:0 32px 60px; color:var(--ink-soft); font-size:0.85rem}
@@ -88,16 +91,17 @@
     <p class="intro">Panduan pemasangan, serta pengambilan daftar ID untuk memproses assignment FASIH SM secara massal (Reject / Approve).</p>
 
     <div class="grid">
-      <a class="card" href="petunjuk.html">
+      <div class="card">
         <div class="icon navy">📘</div>
         <h2>1. Panduan Pemasangan</h2>
         <p>Cara memasang Python dan menjalankan skrip Reject/Approve massal, langkah demi langkah untuk pemula.</p>
         <span class="dl-row">
-          <a href="files/fasih_bulk.py" download onclick="event.stopPropagation()">&#8681; fasih_bulk.py</a>
-          <a href="files/fasih_approve_pengawas.py" download onclick="event.stopPropagation()">&#8681; approve_pengawas.py</a>
+          <a href="files/fasih_bulk.py" download>&#8681; fasih_bulk.py</a>
+          <a href="files/fasih_approve_pengawas.py" download>&#8681; approve_pengawas.py</a>
+          <a href="files/contoh-data.xlsx" download>&#8681; contoh-data.xlsx</a>
         </span>
-        <span class="link-row navy">Buka Tautan <span>&rarr;</span></span>
-      </a>
+        <a class="link-row navy stretched-link" href="petunjuk.html">Buka Tautan <span>&rarr;</span></a>
+      </div>
 
       <a class="card" href="https://script.google.com/macros/s/AKfycbzA_CmEd9ZwSEca_xkwW76bDD_LaE4vCnJgutGtJuOL7S95StrB-XR5eLeY-Fo2mgtD/exec" target="_blank" rel="noopener">
         <div class="icon rust">✕</div>
